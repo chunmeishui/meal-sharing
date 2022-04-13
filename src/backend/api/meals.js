@@ -118,7 +118,7 @@ router.get("/", async (request, response) => {
 
   if ("maxPrice" in request.query) {
     const maxPrice = Number(request.query.maxPrice);
-    if (isNaN(request.query.maxPrice)) {
+    if (isNaN(maxPrice)) {
       return response.send("Not a number");
     } else {
       // titles = titles.filter((meal) => meal.price < maxPrice);
@@ -156,7 +156,7 @@ router.get("/", async (request, response) => {
   if ("createdAfter" in request.query) {
     const createdAfter = new Date(request.query.createdAfter);
     // titles =titles.filter((meal) => meal.created_date < createdAfter);
-    titles = titles.where("meal.created_date" < createdAfter);
+    meals = meals.where("meal.created_date", "<", createdAfter);
   }
 
   if ("limit" in request.query) {

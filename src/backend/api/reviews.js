@@ -38,7 +38,8 @@ router.get("/:id", async (request, response) => {
     try {
         const reviews = await knex("review").select('*');
         const inputId = Number(request.params.id);
-        const maxIdOfReview =Math.max( reviews.map(review => review.id));
+       const newArray = reviews.map((review) => review.id);
+       const maxIdOfReview = Math.max(...newArray);
         if (isNaN(inputId)) {
             response.send("not a number")
         } else if (inputId > maxIdOfReview) {
@@ -55,7 +56,9 @@ router.put("/:id", async (request, response) => {
     try {
         const reviews = await knex("review").select('*');
         const inputId = Number(request.params.id);
-        const maxIdOfReview =Math.max( reviews.map(review => review.id));
+        const newArray = reviews.map(review => review.id);
+        const maxIdOfReview =Math.max(...newArray);
+
         if (isNaN(inputId)) {
             response.send("Id is not a number")
         } else if (inputId > maxIdOfReview) {
@@ -82,7 +85,8 @@ router.delete("/:id", async (request, response) => {
     try {
         const reviews = await knex("review").select('*');
         const inputId = Number(request.params.id);
-        const maxIdOfReview =Math.max( reviews.map(review => review.id));
+        const newArray = reviews.map((review) => review.id);
+        const maxIdOfReview = Math.max(...newArray);
         if (isNaN(id)) {
             response.send("Id is not a number")
         }

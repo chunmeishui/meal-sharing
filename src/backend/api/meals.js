@@ -171,12 +171,11 @@ router.get("/", async (request, response) => {
 
   try {
     const mealsResult = await meals;
-    if (mealsResult.length) {
+    if (mealsResult.length === 0) {
       response.json("No meals found");
     } else {
       response.json(mealsResult);
     }
-    
   } catch (error) {
     throw error;
   }

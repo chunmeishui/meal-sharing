@@ -80,6 +80,7 @@ export const AddMeal = () => {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              required
             ></input>
           </label>
         </div>
@@ -98,7 +99,7 @@ export const AddMeal = () => {
           <label>
             Meal Price:
             <input
-              type="decimal"
+              type="number"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
             ></input>

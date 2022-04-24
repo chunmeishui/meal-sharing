@@ -17,7 +17,7 @@ export function Reviewsa() {
   }, []);
 
   const fetchDataResult = async () => {
-    const response = await fetch("http://localhost:3000/api/reviews");
+    const response = await fetch("api/reviews");
     const Data = await response.json();
     setFetchData(Data);
   };

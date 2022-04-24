@@ -46,7 +46,7 @@ function ReservationSpecific({ id, max_reservations }) {
         alert("fill the form");
       } else {
         const fetchPost = await fetch(
-          "http://localhost:3000/api/reservations",
+          "api/reservations",
           {
             method: "POST",
             headers: {

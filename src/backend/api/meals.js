@@ -135,7 +135,7 @@ router.get("/", async (request, response) => {
         "max_reservations",
         knex.raw("SUM(number_of_guests) AS total_guests"),
         knex.raw(
-          '(max_reservations-SUM(number_of_guests)) AS "Available Reservation"'
+          '(max_reservations-SUM(number_of_guests)) AS "AvailableReservation"'
         )
       )
       .where("max_reservations", ">", "number_of_guests")
@@ -171,12 +171,11 @@ router.get("/", async (request, response) => {
 
   try {
     const mealsResult = await meals;
-    if (mealsResult.length) {
+    if (mealsResult.length === 0) {
       response.json("No meals found");
     } else {
       response.json(mealsResult);
     }
-    
   } catch (error) {
     throw error;
   }

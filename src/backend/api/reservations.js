@@ -25,23 +25,23 @@ router.get("/:id", async (request, response) => {
     throw error;
   }
 });
-
 router.post("/", async (request, response) => {
   try {
-    const reservations = await knex("reservation").select("*");
-    const postReservation = reservations.insert({
+    const postedMeal = await knex("reservation").insert({
       number_of_guests: request.body.number_of_guests,
-      created_date: request.body.created_date,
-      contact_phonenumber: request.body.contact_phonenumber,
-      contact_name: request.body.contact_name,
-      contact_email: request.body.contact_email,
-      meal_id: request.body.meal_id,
+        created_date: request.body.created_date,
+        contact_phonenumber: request.body.contact_phonenumber,
+        contact_name: request.body.contact_name,
+        contact_email: request.body.contact_email,
+        meal_id: request.body.meal_id,
     });
-    response.json(postReservation);
+    response.json(postedMeal);
   } catch (error) {
     throw error;
   }
 });
+
+
 
 router.put("/:id", async (request, response) => {
   try {

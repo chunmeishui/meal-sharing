@@ -5,11 +5,7 @@ import { Link } from "react-router-dom";
 
 function AllReservations() {
   const [fetchData, setFetchData] = useState([]);
-//   const [success, setSuccess] = useState();
-  //   const [seat, setSeat] = useState("");
-  //   const [phone, setPhone] = useState("");
-  //   const [name, setName] = useState("");
-  //   const [mail, setMail] = useState("");
+
   useEffect(() => {
     fetchDataResult();
   }, []);
@@ -20,18 +16,15 @@ function AllReservations() {
     setFetchData(Data);
   };
   const onDeleteBookInfo = (e) => {
-    //    const [id, setId] = useState();
-
+    console.log(e);
     fetch(`http://localhost:3000/api/meals/${e}`, {
       method: "DELETE",
     });
-    // setSuccess("delete success");
   };
 
   const titles = fetchData.map((items, index) => {
     return (
       <div className="reservationsout" key={index}>
-        {/* <Link exact to={`meals/${items.id}`}> */}
         <div className="reservations">
           <div className="reservation">
             <h4>meal_id : {items.meal_id}.</h4>
@@ -42,11 +35,8 @@ function AllReservations() {
             <button onClick={onDeleteBookInfo(items.id)}>
               Delete reservation
             </button>
-            {/* <h3>{success}</h3> */}
-            {/* {addBookInfo} */}
           </div>
         </div>
-        {/* </Link> */}
       </div>
     );
   });

@@ -7,6 +7,7 @@
   },
   "scripts": {
     "build": "webpack --mode production",
+    "heroku-postbuild":"cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "start": "npm run build && node ./src/backend/server",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon ./src/backend/server",

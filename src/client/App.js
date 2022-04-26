@@ -11,7 +11,10 @@ import Footer from "./componentsMealsharing/Footer";
 import Header from "./componentsMealsharing/Header";
 import Contact from "./componentsMealsharing/Contact";
 import { AddMeal } from "./componentsMealsharing/AddMeal";
-import { Reviewsa } from "./componentsMealsharing/Reviewsa";
+import { Reviews } from "./componentsMealsharing/Reviews";
+import { DeleteMeal } from "./componentsMealsharing/DeleteMeal";
+import { ReviewSpecific } from "./componentsMealsharing/ReviewSpecific";
+import AllReservations from "./componentsMealsharing/AllReservations";
 
 function App() {
   return (
@@ -24,9 +27,12 @@ function App() {
           <Route path="/meals" exact component={Meals} />
           <Route path="/meals/:id" exact component={Mealspecific} />
           <Route path="/reservation" exact component={Reservations} />
-          <Route path="/reviews" exact component={Reviewsa} />
+          <Route path="/reviews" exact component={Reviews} />
+          <Route path="/reviews/:id" exact component={ReviewSpecific} />
           <Route path="/add" exact component={AddMeal} />
           <Route path="/contact" exact component={Contact} />
+          <Route path="/delete/:id" exact component={DeleteMeal} />
+          <Route path="/reservations" exact component={AllReservations} />
         </Switch>
 
         <Footer />

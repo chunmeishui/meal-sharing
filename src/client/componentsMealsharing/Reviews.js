@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Meal.css";
 import { FancyBorder } from "./FancyBorder";
 
-export function Reviewsa() {
+export function Reviews() {
   const [fetchData, setFetchData] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -21,6 +21,7 @@ export function Reviewsa() {
     const Data = await response.json();
     setFetchData(Data);
   };
+  
   const titles = fetchData.map((items, index) => {
     return (
       <div className="mealTitle" key={index}>
@@ -73,11 +74,11 @@ const addIdNew = fetchData.length + 1;
         await fetchPost.json();
         if (fetchPost.status === 200) {
           setSucceed(" add succeed");
-          // setTitle("");
-          // setDescription("");
-          // setStars("");
-          // setMealId("");
-          // setCreated("");
+          setTitle("");
+          setDescription("");
+          setStars("");
+          setMealId("");
+          setCreated("");
         } else {
           setSucceed("error");
         }
@@ -97,6 +98,7 @@ const addIdNew = fetchData.length + 1;
             <input
               type="text"
               value={title}
+              required
               onChange={(e) => setTitle(e.target.value)}
             ></input>
           </label>
@@ -107,6 +109,7 @@ const addIdNew = fetchData.length + 1;
             <input
               type="text"
               value={description}
+              required
               onChange={(e) => setDescription(e.target.value)}
             ></input>
           </label>
@@ -118,26 +121,29 @@ const addIdNew = fetchData.length + 1;
               type="number"
               value={stars}
               onChange={(e) => setStars(e.target.value)}
+              required
             ></input>
           </label>
         </div>
         <div>
           <label>
-            created:
+            Created date:
             <input
               type="date"
               value={created}
               onChange={(e) => setCreated(e.target.value)}
+              required
             ></input>
           </label>
         </div>
         <div>
           <label>
-            mealId:
+            Meal_Id:
             <input
               type="number"
               value={mealId}
               onChange={(e) => setMealId(e.target.value)}
+              required
             ></input>
           </label>
         </div>

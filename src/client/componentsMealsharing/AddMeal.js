@@ -35,14 +35,10 @@ export const AddMeal = () => {
     };
     try {
       if (
-        newObj.title === "" ||
-        newObj.description === "" ||
-        newObj.max_reservations === "" ||
-        newObj.price === "" ||
-        newObj.created_date === ""
-      ) {
-        alert("Check the form");
-      } else {
+        !isNaN(title) ||
+        !isNaN(description)
+      ) { alert ("pls check the input format ")
+       } else {
         const fetchPost = await fetch("http://localhost:3000/api/meals", {
           method: "POST",
           headers: {
@@ -92,6 +88,7 @@ export const AddMeal = () => {
               type="number"
               value={maxreservation}
               onChange={(e) => setMaxreservation(e.target.value)}
+              required
             ></input>
           </label>
         </div>
@@ -102,6 +99,7 @@ export const AddMeal = () => {
               type="number"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
+              required
             ></input>
           </label>
         </div>
@@ -112,6 +110,7 @@ export const AddMeal = () => {
               type="date"
               value={created}
               onChange={(e) => setCreated(e.target.value)}
+              required
             ></input>
           </label>
         </div>
@@ -124,6 +123,7 @@ export const AddMeal = () => {
             cols="50"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            required
           ></textarea>
         </div>
         <button type="submit">Add meal</button>

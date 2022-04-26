@@ -96,16 +96,16 @@ router.put("/:id", async (request, response) => {
 router.delete("/:id", async (request, response) => {
   try {
     const meals = await knex("meal").select("*");
-    const inputId = Number(request.params.id);
+     const inputId = Number(request.params.id);
     const maxIdOfMeal = meals.map((meal) => meal.id);
     const largeNo = Math.max(...maxIdOfMeal);
-
-    if (isNaN(inputId)) {
-      response.send("Id is not number");
-    } else if (inputId > largeNo) {
+     if (isNaN(inputId)) {
+   response.send("Id is not number");
+   } 
+   else if (inputId > largeNo) {
       response.send(`the largest id is : ${largeNo}`);
     } else {
-      const deletedMeal = meals.where({ id: request.params.id }).delete();
+      const deletedMeal = await knex("meal").where({ id: request.params.id }).delete();
       response.json(deletedMeal);
     }
   } catch (error) {

@@ -1,3 +1,31 @@
+/* global style */
+
+h1 {
+  text-transform: uppercase;
+  text-align: center;
+  padding: 2rem;
+}
+
+button {
+  margin-top: 2rem;
+  padding: 13px;
+  background-color: rgb(74, 111, 184);
+  margin-bottom: 2rem;
+  margin-right: 1rem;
+}
+
+input {
+  margin-left: 1rem;
+  margin-top: 2rem;
+  padding: 13px;
+  background-color: rgb(59, 101, 185);
+  color: white;
+  font-size: large;
+  text-align: center;
+}
+
+/* header component */
+
 .head {
   align-items: center;
   background-color: rgb(149, 167, 167);
@@ -6,6 +34,9 @@
   display: flex;
   flex-direction: column;
 }
+
+/* nav component */
+
 .nav {
   display: flex;
   justify-content: space-around;
@@ -23,12 +54,10 @@
   text-decoration-thickness: 3px;
   text-transform: uppercase;
 }
-h1 {
-  text-transform: uppercase;
-}
+
 .nav-links {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   background-color: rgb(70, 73, 71);
   flex-direction: row;
   text-align: center;
@@ -40,6 +69,12 @@ h1 {
 .nav-links a:visited {
   color: white;
 }
+.nav-links a:hover {
+  color: rgb(141, 193, 192);
+}
+
+/* footer component */
+
 .footer {
   align-items: center;
   background-color: rgb(122, 121, 127);
@@ -48,7 +83,10 @@ h1 {
   display: flex;
   flex-direction: column;
   font-family: cursive;
+  padding: 0.5rem;
 }
+
+/* home component */
 
 .home h1 {
   text-align: center;
@@ -57,39 +95,61 @@ h1 {
   width: 100%;
 }
 .home p {
-  line-height: 2em;
-  padding-left: 12em;
-  padding-right: 12em;
+  padding: 1rem;
+  line-height: 2.5rem;
+  text-align: left;
   font-weight: bolder;
-}
-.lastP {
-  margin-bottom: 100px;
+  letter-spacing: 2px;
+  font-size: large;
 }
 
-.content {
-  text-align: center;
-  background-color: rgb(171, 159, 159);
-  padding: 20px;
-}
-.mealTitle {
-  display: flex;
-  flex-wrap: wrap;
-  width: 26%;
-  text-align: center;
-  justify-content: space-between;
-  padding: 15px;
-}
-.mealTitle img {
+/* meals component */
+
+.meals input {
   display: block;
-  width: 100%;
+  align-items: center;
+  padding: 10px;
+  margin: 2rem auto;
+  font-size: larger;
+  background-color: rgb(156, 199, 221);
+  color: rgb(25, 24, 24);
+  text-align: center;
+  font-weight: 700;
 }
 .allMeals {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   background-color: rgb(245, 163, 212);
+ 
 }
+.mealTitle {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+ /* padding: 2rem; */
+  padding: 15px;
+  width: 28%;
+
+}
+.addMeal {
+  display: block;
+  text-align: center;
+  align-items: center;
+}
+.fancy-border img {
+  width: 100%;
+  border-radius: 50%;
+}
+.addDeleteMeal{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+/* contact component */
+
 .contact-all {
   display: flex;
   flex-direction: row;
@@ -111,59 +171,60 @@ h1 {
   border-bottom: 4px solid rgb(10, 10, 10);
 }
 
+/* fancy-border */
+
 .fancy-border {
   border: 10px solid rgb(242, 216, 235);
-  margin-top: 50px;
+  margin-top: 2rem;
   background-color: rgb(242, 124, 175);
   border-radius: 15%;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction: column;
   justify-content: space-between;
   margin: 10px auto;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.fancy-border img {
-  width: 100%;
-  display: block;
-  border-radius: 50%;
-}
+
+/* reservation component */
+
 .reservations img {
   width: 100%;
-  height: 300px;
 }
 .reservations {
   background-color: rgb(226, 177, 177);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .reservations h1 {
   padding: 2rem;
   line-height: 5rem;
   font-weight: 900;
+  letter-spacing: 1rem;
 }
 .reservation {
   color: white;
   background-color: rgb(207, 90, 172);
   flex-direction: column;
   margin: 2rem;
-  text-align: center;
-  padding: 8px;
   width: 100%;
+  text-align: center;
+  padding: 2rem 2rem 0 2rem;
   border-radius: 20%;
+  letter-spacing: 0.1rem;
 }
+
+/* review component */
+
 .review img {
   width: 100%;
   height: 400px;
 }
-.mealspecific img {
-  width: 100%;
-  height: 450px;
-}
+
 .addReviews {
   margin-bottom: 2rem;
   margin-left: 0;
@@ -172,40 +233,66 @@ h1 {
   display: flex;
   flex-direction: column;
 }
-.mealInfo {
-  background-color: rgb(61, 53, 61);
+
+/* Mealspecific add reservation component */
+
+.mealInfo,
+mealSpecificTitle {
+  background-color: rgb(120, 81, 120);
   display: flex;
   flex-direction: column;
   color: white;
-  padding-left: 30%;
   text-decoration: underline;
   text-underline-offset: 10px;
   text-decoration-color: rgb(176, 169, 176);
   text-decoration-thickness: 3px;
   line-height: 3rem;
-  /* border: 3px solid orangered; */
 }
-.mealInfo h1 {
-  padding-left: 25%;
+.mealSpecificTitle{
+  background-color: rgb(241, 98, 210);
+}
+
+.mealInfo {
+  align-items: center;
+  text-align: center;
 }
 .mealInfo a:visited {
   color: white;
 }
+.dispayReservation {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: flex-start;
+  background-color: rgb(76, 73, 73);
+  padding: 15px;
+  border: 3px solid orangered;
+  margin-bottom: 2rem;
+}
+.mealspecific img {
+  width: 100%;
+  height: 450px;
+}
 
-.form {
+.reservationForm {
   margin-top: 50px;
   display: flex;
   flex-direction: column;
   color: white;
   align-items: flex-start;
   background-color: rgb(76, 73, 73);
-  width: 40%;
+  width: 100%;
   padding: 15px;
   border: 3px solid orangered;
   margin-bottom: 2rem;
   justify-content: space-around;
   text-align: center;
 }
+
+/* addMeal component */
+
 .formMeal {
   display: flex;
   flex-direction: column;
@@ -225,71 +312,14 @@ h1 {
   margin-left: 2rem;
   padding: 5px;
 }
-.formMeal button {
-  margin-top: 2rem;
-}
+
 .formMeal textarea {
   width: 100%;
-}
-.dispayReservation {
-  margin-top: 50px;
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  color: white;
-  align-items: flex-start;
-  background-color: rgb(76, 73, 73);
-  padding: 15px;
-  border: 3px solid orangered;
-  margin-bottom: 2rem;
+  font-size: larger;
 }
 
-.form input {
-  margin-bottom: 15px;
-  width: 90%;
-  height: 40px;
-  padding: 15px;
-  margin-left: 1%;
-  background-color: rgb(246, 242, 248);
-}
-button {
-  width: 30%;
-  height: 40px;
-  border-radius: 15px;
-  margin-left: 30%;
-  background-color: rgb(63, 95, 116);
-  margin-bottom: 1rem;
-}
-.addMealreview {
-  width: 100%;
-  height: 40px;
-  border-radius: 15px;
-  margin-bottom: 1rem;
-}
+/* review component */
 
-.displayReview {
-  background-color: rgb(138, 147, 144);
-  padding: 15px;
-  border: 3px solid orangered;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
-  width: 100%;
-  border-radius: 20%;
-  text-align: center;
-}
-/* diplay the items of reviews */
-.reviewsout {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  background-color: rgb(186, 198, 196);
-}
-.reviewBtn {
-  display: block;
-  margin-left: 80%;
-  margin-bottom: 2rem;
-}
 .addreview {
   display: flex;
   flex-direction: column;
@@ -299,21 +329,93 @@ button {
   align-items: center;
   text-align: center;
   color: white;
-   font-size:large;
+  font-size: large;
   font-weight: 600;
-  
 }
 .addreview input {
-  margin-bottom: 5%;
-  padding: 5px;
-  width:90%;
-  height: 40px;
-  background-color: rgb(160, 158, 155);
-  font-size:large;
-  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.reviewSpecific {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* background-image: url("http://breezyoakvillas.com/breezy_oak_villas/wp-content/uploads/2017/03/5-Star-Reviews.png"); */
+}
+.reviewspecificImg{
+  width: 100%;
+  background-color: rgb(209, 114, 218);
+  padding-bottom: 2rem;
+}
+.reviewSpecific img{
+  width: 30%;
+  display: block;
+  margin: 0 auto;
+}
+.reviewSpecificInner {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  padding: 25px;
+  border-radius: 35px;
+  text-align: center;
+  width: 30%;
+  margin-top: 2rem;
+  background-color: rgb(222, 80, 151);
+
+
+}
+
+/* delete component */
+.deleteComponent{
+  background-color: rgb(161, 219, 200)  ;
+  display: flex;
+  flex-direction: column;
   text-align: center;
 }
-.addreview button{
-  width: 20%;
-  background-color: rgb(112, 112, 233);
+.deleteComponent img{
+  width: 100%;
+}
+
+/* small screen make it responsive */
+
+@media screen and (max-width: 700px) {
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+  }
+  .nav p {
+    width: 100%;
+  }
+  .allMeals {
+    flex-direction: column;
+  }
+  .mealTitle {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .contact-all {
+    flex-direction: column;
+  }
+
+  .contact {
+    width: 100%;
+  }
+  .reservations img {
+    height: auto;
+  }
+  .mealInfo {
+    padding: 15px;
+  }
+  .formMeal {
+    padding: 15px;
+  }
+  .reviewSpecific {
+    flex-direction: column;
+  }
+  .reviewSpecificInner {
+    width: 90%;
+    margin: 2rem auto;
+  }
 }

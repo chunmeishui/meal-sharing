@@ -20,16 +20,19 @@ function Mealspecific({ match }) {
   max_reservations = fetchItem.map((max) => max.max_reservations)[0];
 
   const titles = fetchItem.map((items, index) => (
-    <div className=" mealInfo" key={index}>
-      <h1>{items.title}</h1>
-      <h3>meal id : {items.id}.</h3>
-      <h3>Description : {items.description}.</h3>
-      <h3>location : {items.location}.</h3>
-      <h3>when : {items.when}.</h3>
-      <h3>price : {items.price}.</h3>
-      <h3>created_date : {items.created_date}.</h3>
-      <h2>max_reservations : {items.max_reservations}.</h2>
-      
+    <div className=" mealSpecificTitle" key={index}>
+      <div>
+        <h1>{items.title}</h1>
+      </div>
+      <div className=" mealInfo">
+        <h3>meal id : {items.id}.</h3>
+        <h3>Description : {items.description}.</h3>
+        <h3>location : {items.location}.</h3>
+        <h3>when : {items.when}.</h3>
+        <h3>price : {items.price}.</h3>
+        <h3>created_date : {items.created_date}.</h3>
+        <h2>max_reservations : {items.max_reservations}.</h2>
+      </div>
     </div>
   ));
 

@@ -18,7 +18,7 @@ router.get("/", async (request, response) => {
 
 router.post("/", async (request, response) => {
   try {
-    const postReviews =await knex("review").insert({
+    const postReviews = await knex("review").insert({
       title: request.body.title,
       description: request.body.description,
       stars: request.body.stars,
@@ -42,7 +42,11 @@ router.get("/:id", async (request, response) => {
     } else if (inputId > maxIdOfReview) {
       response.send(`The max id is :${maxIdOfReview}`);
     } else {
-      const speceficReview = reviews.where("id", inputId);
+      const speceficReview = await knex("review").where(
+        "meal_id",
+        "=",
+        inputId
+      );
       response.json(speceficReview);
     }
   } catch (error) {
@@ -61,14 +65,16 @@ router.put("/:id", async (request, response) => {
     } else if (inputId > maxIdOfReview) {
       response.send(`the largest id is : ${maxIdOfReview}`);
     } else {
-      const specificReviews = reviews.where({ id: request.params.id }).update({
-        title: request.body.title,
-        description: request.body,
-        description,
-        stars: request.body.stars,
-        crested_date: request.body.crested_date,
-        meal_id: request.body.meal_id,
-      });
+      const specificReviews = await knex("review")
+        .where({ id: request.params.id })
+        .update({
+          title: request.body.title,
+          description: request.body,
+          description,
+          stars: request.body.stars,
+          crested_date: request.body.crested_date,
+          meal_id: request.body.meal_id,
+        });
       response.json(specificReviews);
     }
   } catch (error) {
@@ -87,7 +93,9 @@ router.delete("/:id", async (request, response) => {
     } else if (inputId > maxIdOfReview) {
       response.send(`the largest id is : ${maxIdOfReview}`);
     } else {
-      const specificReviews = reviews.where({ id: inputId }).del();
+      const specificReviews = await knex("review")
+        .where({ id: request.params.id })
+        .delete();
       response.json(specificReviews);
     }
   } catch (error) {

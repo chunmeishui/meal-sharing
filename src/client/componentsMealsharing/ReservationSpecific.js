@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Meal.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function ReservationSpecific({ id, max_reservations }) {
   const [fetchReservations, setFetchReservations] = useState([]);
@@ -45,16 +45,13 @@ function ReservationSpecific({ id, max_reservations }) {
       ) {
         alert("fill the form");
       } else {
-        const fetchPost = await fetch(
-          "api/reservations",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newObj),
-          }
-        );
+        const fetchPost = await fetch("api/reservations", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newObj),
+        });
         await fetchPost.json();
         if (fetchPost.status === 200) {
           setFeedback(" booked succeed");
@@ -80,26 +77,30 @@ function ReservationSpecific({ id, max_reservations }) {
     ]);
   }
 
-  const addinfo = reservation.map((items) => (
-    <div className="dispayReservation">
+  const addinfo = reservation.map((items, index) => (
+    <div className="dispayReservation" key={index}>
       <h3>seats: {items.number_of_guests}</h3>
       <h3>phone: {items.contact_phonenumber}</h3>
       <h3>Name: {items.contact_name}</h3>
       <h3>email: {items.contact_email}</h3>
     </div>
   ));
-
+  const apiDelete = `http://localhost:3000/api/meals/${id}`;
+  const onDeleteMeal = () => {
+    fetch(apiDelete, {
+      method: "DELETE",
+    });
+    console.log(apiDelete);
+  };
   return (
     <div className="ReservationsSpecific">
       <div className=" mealInfo">
         <h2>booked guests No : {totalGuests}.</h2>
         <h2>Avaliable Seats : {seatsLeft}.</h2>
-        <Link exact to={`/meals`}>
-        <button>back to meal</button>
-      </Link>
+        <h1>book seats now</h1>
         {seatsLeft > 0 ? (
           <div>
-            <form onSubmit={addReservation} className=" form">
+            <form onSubmit={addReservation} className=" reservationForm">
               <div>
                 <label>
                   seat NO:
@@ -122,7 +123,7 @@ function ReservationSpecific({ id, max_reservations }) {
               </div>
               <div>
                 <label>
-                   Full name:
+                  Full name:
                   <input
                     type="text"
                     value={name}
@@ -150,6 +151,12 @@ function ReservationSpecific({ id, max_reservations }) {
         ) : (
           <h1>No seats left now</h1>
         )}
+        <Link exact to={`/meals`}>
+          <button>back to meal</button>
+        </Link>
+        <button onClick={onDeleteMeal} className="deleteMealbtn">
+          Delete meal
+        </button>
       </div>
     </div>
   );

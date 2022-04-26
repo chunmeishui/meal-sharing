@@ -19,7 +19,10 @@ router.get("/", async (request, response) => {
 router.get("/:id", async (request, response) => {
   try {
     const reservations = await knex("reservation").select("*");
-    const specificReservation = reservations.where("id", request.params.id);
+    const specificReservation = await knex("reservation").where(
+      "id",
+      request.params.id
+    );
     response.json(specificReservation);
   } catch (error) {
     throw error;
@@ -29,19 +32,17 @@ router.post("/", async (request, response) => {
   try {
     const postedMeal = await knex("reservation").insert({
       number_of_guests: request.body.number_of_guests,
-        created_date: request.body.created_date,
-        contact_phonenumber: request.body.contact_phonenumber,
-        contact_name: request.body.contact_name,
-        contact_email: request.body.contact_email,
-        meal_id: request.body.meal_id,
+      created_date: request.body.created_date,
+      contact_phonenumber: request.body.contact_phonenumber,
+      contact_name: request.body.contact_name,
+      contact_email: request.body.contact_email,
+      meal_id: request.body.meal_id,
     });
     response.json(postedMeal);
   } catch (error) {
     throw error;
   }
 });
-
-
 
 router.put("/:id", async (request, response) => {
   try {
@@ -57,7 +58,7 @@ router.put("/:id", async (request, response) => {
     } else if (inputId > maxIdOfReservation) {
       response.send(`the largest id is : ${maxIdOfReservation}`);
     } else {
-      const specificReservation = reservations
+      const specificReservation = await knex("reservation")
         .where({ id: request.params.id })
         .update({
           number_of_guests: request.body.number_of_guests,
@@ -82,12 +83,14 @@ router.delete("/:id", async (request, response) => {
     );
     const maxIdOfReservation = Math.max(...newArrayReservation);
     const inputId = Number(request.params.id);
-    if (isNaN(id)) {
+    if (isNaN(inputId)) {
       response.send("Id is not a number");
     } else if (inputId > maxIdOfReservation) {
       response.send(`the largest id is : ${maxIdOfReservation}`);
     } else {
-      const specificReservation = reservations.where({ id: inputId }).del();
+      const specificReservation = await knex("reservation")
+        .where({ id: request.params.id })
+        .delete();
       response.json(specificReservation);
     }
   } catch (error) {

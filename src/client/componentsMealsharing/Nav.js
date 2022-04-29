@@ -7,22 +7,19 @@ function Nav() {
     <nav className="nav">
       <h2>Logo</h2>
       <ul className="nav-links">
-        <Link to={"/"}>
+        <Link to="/">
           <li>Home</li>
         </Link>
-        <Link to={"/meals"}>
+        <Link to="/meals">
           <li>Menu</li>
         </Link>
-        {/* <Link to={"/delete/:id"}>
-          <li>delete Meal</li>
-        </Link>  */}
-        <Link to={"/reservation"}>
+        <Link to="/reservation">
           <li>Reservations</li>
         </Link>
-        <Link to={"/reviews"}>
+        <Link to="/reviews">
           <li>Reviews</li>
         </Link>
-        <Link to={"/contact"}>
+        <Link to="/contact">
           <li>Contact </li>
         </Link>
       </ul>

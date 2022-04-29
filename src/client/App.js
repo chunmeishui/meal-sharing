@@ -25,13 +25,13 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/meals" exact component={Meals} />
-          <Route path="/meals/:id" exact component={Mealspecific} />
+          <Route path="/meals/:id"  component={Mealspecific} />
           <Route path="/reservation" exact component={Reservations} />
           <Route path="/reviews" exact component={Reviews} />
-          <Route path="/reviews/:id" exact component={ReviewSpecific} />
+          <Route path="/reviews/:id"  component={ReviewSpecific} />
           <Route path="/add" exact component={AddMeal} />
           <Route path="/contact" exact component={Contact} />
-          <Route path="/delete/:id" exact component={DeleteMeal} />
+          <Route path="/delete/:id"  component={DeleteMeal} />
           <Route path="/reservations" exact component={AllReservations} />
         </Switch>
 

@@ -84,6 +84,8 @@ input {
   flex-direction: column;
   font-family: cursive;
   padding: 0.5rem;
+  letter-spacing: .2rem;
+  padding-bottom: 2rem;
 }
 
 /* home component */
@@ -186,6 +188,9 @@ input {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+.fancy-border:hover{
+  background-color:rgb(161, 136, 185)
+}
 
 /* reservation component */
 
@@ -199,7 +204,13 @@ input {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-
+.allReservations{
+    background-color: rgb(239, 219, 235);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
 .reservations h1 {
   padding: 2rem;
   line-height: 5rem;

@@ -18,11 +18,9 @@ router.get("/", async (request, response) => {
 
 router.get("/:id", async (request, response) => {
   try {
-    const reservations = await knex("reservation").select("*");
-    const specificReservation = await knex("reservation").where(
-      "id",
-      request.params.id
-    );
+    const specificReservation = await knex("reservation")
+      .select("*")
+      .where("id", request.params.id);
     response.json(specificReservation);
   } catch (error) {
     throw error;
@@ -30,7 +28,7 @@ router.get("/:id", async (request, response) => {
 });
 router.post("/", async (request, response) => {
   try {
-    const postedMeal = await knex("reservation").insert({
+    const postedMeal = await knex("reservation").select("*").insert({
       number_of_guests: request.body.number_of_guests,
       created_date: request.body.created_date,
       contact_phonenumber: request.body.contact_phonenumber,
@@ -59,6 +57,7 @@ router.put("/:id", async (request, response) => {
       response.send(`the largest id is : ${maxIdOfReservation}`);
     } else {
       const specificReservation = await knex("reservation")
+        .select("*")
         .where({ id: request.params.id })
         .update({
           number_of_guests: request.body.number_of_guests,
@@ -89,6 +88,7 @@ router.delete("/:id", async (request, response) => {
       response.send(`the largest id is : ${maxIdOfReservation}`);
     } else {
       const specificReservation = await knex("reservation")
+        .select("*")
         .where({ id: request.params.id })
         .delete();
       response.json(specificReservation);

@@ -1,5 +1,6 @@
 import "./Meal.css";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const DeleteMeal = () => {
   const [id, setId] = useState();
@@ -35,6 +36,10 @@ export const DeleteMeal = () => {
       </div>
       <div>
         <button onClick={onDeleteMeal}>DELETE MEAL</button>
+        <Link  to="/meals">
+          {" "}
+          <button>BACK TO MEAL</button>
+        </Link>
         <h2>{success}</h2>
       </div>
     </div>

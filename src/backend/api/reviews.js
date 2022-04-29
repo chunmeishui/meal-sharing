@@ -18,7 +18,7 @@ router.get("/", async (request, response) => {
 
 router.post("/", async (request, response) => {
   try {
-    const postReviews = await knex("review").insert({
+    const postReviews = await knex("review").select("*").insert({
       title: request.body.title,
       description: request.body.description,
       stars: request.body.stars,
@@ -36,17 +36,16 @@ router.get("/:id", async (request, response) => {
     const reviews = await knex("review").select("*");
     const inputId = Number(request.params.id);
     const newArray = reviews.map((review) => review.id);
+    //get the largest number of id
     const maxIdOfReview = Math.max(...newArray);
     if (isNaN(inputId)) {
       response.send("not a number");
     } else if (inputId > maxIdOfReview) {
       response.send(`The max id is :${maxIdOfReview}`);
     } else {
-      const speceficReview = await knex("review").where(
-        "meal_id",
-        "=",
-        inputId
-      );
+      const speceficReview = await knex("review")
+        .select("*")
+        .where("meal_id", "=", inputId);
       response.json(speceficReview);
     }
   } catch (error) {
@@ -58,6 +57,7 @@ router.put("/:id", async (request, response) => {
     const reviews = await knex("review").select("*");
     const inputId = Number(request.params.id);
     const newArray = reviews.map((review) => review.id);
+    //get the largest number of id
     const maxIdOfReview = Math.max(...newArray);
 
     if (isNaN(inputId)) {
@@ -66,11 +66,11 @@ router.put("/:id", async (request, response) => {
       response.send(`the largest id is : ${maxIdOfReview}`);
     } else {
       const specificReviews = await knex("review")
+        .select("*")
         .where({ id: request.params.id })
         .update({
           title: request.body.title,
-          description: request.body,
-          description,
+          description: request.body.description,
           stars: request.body.stars,
           crested_date: request.body.crested_date,
           meal_id: request.body.meal_id,
@@ -94,6 +94,7 @@ router.delete("/:id", async (request, response) => {
       response.send(`the largest id is : ${maxIdOfReview}`);
     } else {
       const specificReviews = await knex("review")
+        .select("*")
         .where({ id: request.params.id })
         .delete();
       response.json(specificReviews);

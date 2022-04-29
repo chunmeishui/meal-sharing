@@ -33,25 +33,27 @@ function ReservationSpecific({ id, max_reservations }) {
       contact_phonenumber: phone,
       contact_name: name,
       contact_email: mail,
-      created_date: "2022-04-22",
+      created_date: "2022-04-29",
       meal_id: id,
     };
     try {
       if (
-        newObj.number_of_guests === "" ||
-        newObj.contact_phonenumber === "" ||
-        newObj.contact_name === "" ||
-        newObj.contact_email === ""
+      !isNaN( newObj.contact_name)
+       
       ) {
-        alert("fill the form");
+        console.log("fill the form");
       } else {
-        const fetchPost = await fetch("api/reservations", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newObj),
-        });
+        const fetchPost = await fetch(
+          "http://localhost:3000/api/reservations",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newObj),
+            
+          }
+        );
         await fetchPost.json();
         if (fetchPost.status === 200) {
           setFeedback(" booked succeed");
@@ -65,7 +67,11 @@ function ReservationSpecific({ id, max_reservations }) {
   };
 
   // display of reservation
+
+  // how to judge the empty input part????
+
   function bookSeats() {
+   
     setReservation((previous) => [
       ...previous,
       {
@@ -90,7 +96,7 @@ function ReservationSpecific({ id, max_reservations }) {
     fetch(apiDelete, {
       method: "DELETE",
     });
-    console.log(apiDelete);
+    setFeedback("delete succeed")
   };
   return (
     <div className="ReservationsSpecific">
@@ -107,6 +113,7 @@ function ReservationSpecific({ id, max_reservations }) {
                   <input
                     type="number"
                     value={seat}
+                    required
                     onChange={(e) => setSeat(e.target.value)}
                   ></input>
                 </label>
@@ -117,6 +124,7 @@ function ReservationSpecific({ id, max_reservations }) {
                   <input
                     type="number"
                     value={phone}
+                    required
                     onChange={(e) => setPhone(e.target.value)}
                   ></input>
                 </label>
@@ -127,6 +135,7 @@ function ReservationSpecific({ id, max_reservations }) {
                   <input
                     type="text"
                     value={name}
+                    required
                     onChange={(e) => setName(e.target.value)}
                   ></input>
                 </label>
@@ -137,6 +146,7 @@ function ReservationSpecific({ id, max_reservations }) {
                   <input
                     type="email"
                     value={mail}
+                    required
                     onChange={(e) => setMail(e.target.value)}
                   ></input>
                 </label>
@@ -151,7 +161,7 @@ function ReservationSpecific({ id, max_reservations }) {
         ) : (
           <h1>No seats left now</h1>
         )}
-        <Link exact to={`/meals`}>
+        <Link  to={`/meals`}>
           <button>back to meal</button>
         </Link>
         <button onClick={onDeleteMeal} className="deleteMealbtn">

@@ -1,5 +1,6 @@
 import "./Meal.css";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export const AddMeal = () => {
   const [title, setTitle] = useState("");
@@ -39,6 +40,7 @@ export const AddMeal = () => {
         !isNaN(description)
       ) { alert ("pls check the input format ")
        } else {
+         setSucceed("");
         const fetchPost = await fetch("http://localhost:3000/api/meals", {
           method: "POST",
           headers: {
@@ -47,14 +49,18 @@ export const AddMeal = () => {
           body: JSON.stringify(newObj),
         });
         await fetchPost.json();
+
+        //this is to judge wether succeed or not????
+
         if (fetchPost.status === 200) {
-          setSucceed(" added mealsucceed");
+          setSucceed(" added meal succeed");
           setTitle("");
           setDescription("");
           setMaxreservation("");
           setPrice("");
           setCreated("");
           setMeals("");
+          
         } else {
           setSucceed("error");
         }
@@ -67,7 +73,6 @@ export const AddMeal = () => {
   return (
     <div className=" formMeal">
       <h1>Add meals</h1>
-
       <form onSubmit={onhandleReservation}>
         <div>
           <label>
@@ -127,6 +132,9 @@ export const AddMeal = () => {
           ></textarea>
         </div>
         <button type="submit">Add meal</button>
+        <Link  to="/meals">
+          <button>BACK TO MEAL</button>
+        </Link>
       </form>
       <h3>{succeed}</h3>
     </div>

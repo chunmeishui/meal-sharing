@@ -17,17 +17,17 @@ export function Reviews() {
   }, []);
 
   const fetchDataResult = async () => {
-    const response = await fetch("api/reviews");
+    const response = await fetch("http://localhost:3000/api/reviews");
     const Data = await response.json();
     setFetchData(Data);
   };
-  
+
   const titles = fetchData.map((items, index) => {
     return (
       <div className="mealTitle" key={index}>
         <FancyBorder>
           <div>
-            <Link exact to={`/meals`}>
+            <Link to={"/meals"}>
               <h2> {items.title}</h2>
               <h4>meal_id : {items.meal_id}.</h4>
               <h4>Rating : {items.stars} - stars.</h4>
@@ -39,14 +39,13 @@ export function Reviews() {
       </div>
     );
   });
-console.log(fetchData.length);
-const addIdNew = fetchData.length + 1;
+  // const addIdNew = fetchData.length + 1;
   const addReview = async (e) => {
     e.preventDefault();
     // const reviewData = fetchData.map((item) => item);
     // addid = reviewData[reviewData.length - 1].id;
     const addedReview = {
-      id: addIdNew,
+      // id: addIdNew,
       title: title,
       description: description,
       stars: stars,
@@ -55,13 +54,7 @@ const addIdNew = fetchData.length + 1;
     };
     console.log(addedReview);
     try {
-      if (
-        addedReview.title === "" ||
-        addedReview.description === "" ||
-        addedReview.stars === "" ||
-        addedReview.created_date === "" ||
-        addedReview.meal_id === ""
-      ) {
+      if (!isNaN(addedReview.title) || !isNaN(addedReview.description)) {
         alert("Check the form");
       } else {
         const fetchPost = await fetch("http://localhost:3000/api/reviews", {
@@ -84,13 +77,13 @@ const addIdNew = fetchData.length + 1;
         }
       }
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   };
 
   return (
     <div className="meals">
-      <h1 className="content"> ADD REVIEWS</h1>
+      {/* <h1 className="content"> ADD REVIEWS</h1> */}
       <form onSubmit={addReview} className="addreview">
         <div>
           <label>
@@ -98,8 +91,8 @@ const addIdNew = fetchData.length + 1;
             <input
               type="text"
               value={title}
-              required
               onChange={(e) => setTitle(e.target.value)}
+              required
             ></input>
           </label>
         </div>
@@ -147,12 +140,15 @@ const addIdNew = fetchData.length + 1;
             ></input>
           </label>
         </div>
-        <button className="addReviews" type="submit" onClick={addReview}>
+        <button className="addReviews" type="submit">
           add reviews
         </button>
+        <Link to="/meals">
+          <button>back to meal</button>
+        </Link>
         <h3>{succeed}</h3>
       </form>
-
+      <h1> All reviews</h1>
       <div className="allMeals">{titles}</div>
     </div>
   );

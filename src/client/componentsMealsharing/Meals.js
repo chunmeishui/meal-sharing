@@ -12,33 +12,40 @@ function Meals() {
   }, []);
 
   const fetchDataResult = async () => {
-    const response = await fetch("api/meals");
+    const response = await fetch("http://localhost:3000/api/meals");
     const Data = await response.json();
     setFetchData(Data);
   };
-  const titles = fetchData.map((items, index) => {
-    return (
-      <div className="mealTitle" key={index}>
-        <FancyBorder>
-          <div>
-            <Link exact to={`meals/${items.id}`}>
-              <h2> {items.title}</h2>
-              <h2> Id: {items.id}.</h2>
+   let titles = null;
+if (fetchData.length === 0) {
+ titles = <p>no such meal</p>;
+} else{
+ titles= fetchData.map((items, index) => {
+   return (
+     <div className="mealTitle" key={index}>
+       <FancyBorder>
+         <div>
+           <Link  to={`meals/${items.id}`}>
+             <h2> {items.title}</h2>
+             <h2> Id: {items.id}.</h2>
+             <img src="https://www.sortiraparis.com/images/80/95878/693086-photos-mohamed-cheikh-top-chef-2021-a-la-pagode-de-cos-de-la-reserve.jpg" />
+             <h4> {items.description}</h4>
+             <h4>Price : {items.price}Kr</h4>
+           </Link>
+         </div>
+         <div>
+           {/* get all of the reviews of the meal */}
+           <Link  to={`/reviews/${items.id}`}>
+             <button className="addMealreview">reviews</button>
+           </Link>
+         </div>
+       </FancyBorder>
+     </div>
+   );
+ });
 
-              <img src="https://www.sortiraparis.com/images/80/95878/693086-photos-mohamed-cheikh-top-chef-2021-a-la-pagode-de-cos-de-la-reserve.jpg" />
-              <h4> {items.description}</h4>
-              <h4>Price : {items.price}Kr</h4>
-            </Link>
-          </div>
-          <div>
-            <Link exact to={`/reviews/${items.id}`}>
-              <button className="addMealreview">reviews</button>
-            </Link>
-          </div>
-        </FancyBorder>
-      </div>
-    );
-  });
+}
+
 
   // how to judge the input value is right or not. how about it will fetch nothing???
   useEffect(() => {
@@ -48,12 +55,12 @@ function Meals() {
   const mealSearch = async () => {
     try {
       if (isNaN(input) && input !== "") {
-        const fatchMeal = await fetch(`api/meals?title=${input}`);
+        const fatchMeal = await fetch(
+          `http://localhost:3000/api/meals?title=${input}`
+        );
         const data = await fatchMeal.json();
-        console.log(data);
         setFetchData(data);
       }
-    
     } catch (error) {
       throw error;
     }
@@ -71,13 +78,12 @@ function Meals() {
       ></input>
       <div className="allMeals">
         {titles}
-        {fetchData.length === 0 && <p>no such meal</p>}
       </div>
       <div className="addDeleteMeal">
-        <Link exact to={"/add"} className="addMeal">
+        <Link  to="/add" className="addMeal">
           <button>ADD MEAL</button>
         </Link>
-        <Link exact to={"/delete/:id"} className="addMeal">
+        <Link  to="/delete/:id" className="addMeal">
           <button>DELETE MEAL</button>
         </Link>
       </div>

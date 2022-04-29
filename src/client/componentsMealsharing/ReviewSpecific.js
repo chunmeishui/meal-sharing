@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Meal.css";
-import { FancyBorder } from "./FancyBorder";
 
 export const ReviewSpecific = ({ match }) => {
   const id = match.params.id;
@@ -33,7 +32,10 @@ export const ReviewSpecific = ({ match }) => {
       </div>
       {items}
       <div className="reviewSpecificInner">
-        <Link exact to={`/meals`}>
+        <Link  to="/reviews">
+          <button>add review</button>
+        </Link>
+        <Link  to="/meals">
           <button>back to meal</button>
         </Link>
       </div>

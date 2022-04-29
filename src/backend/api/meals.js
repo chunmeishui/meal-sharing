@@ -24,7 +24,9 @@ router.get("/:id", async (request, response) => {
     if (isNaN(inputNumber)) {
       response.send("not a number");
     } else {
-      const specificMeal = await knex("meal").where("id", request.params.id);
+      const specificMeal = await knex("meal")
+        .select("*")
+        .where("id", request.params.id);
       response.json(specificMeal);
     }
   } catch (error) {
@@ -35,7 +37,7 @@ router.get("/:id", async (request, response) => {
 //method 1 of post
 router.post("/", async (request, response) => {
   try {
-    const postedMeal = await knex("meal").insert({
+    const postedMeal = await knex("meal").select("*").insert({
       title: request.body.title,
       description: request.body.description,
       location: request.body.location,
@@ -125,7 +127,7 @@ router.get("/", async (request, response) => {
       meals = meals.where("meal.price", "<=", maxPrice);
     }
   }
-
+// how about there is only meals in mealtable and don't have reservation now but still avalibale for book the seats.
   if ("availableReservations" in request.query) {
     meals = meals
       .join("reservation", "meal.id", "=", "reservation.meal_id")
@@ -171,8 +173,10 @@ router.get("/", async (request, response) => {
 
   try {
     const mealsResult = await meals;
+
+    // return type should always be the same type
     if (mealsResult.length === 0) {
-      response.json("No meals found");
+      response.json([]);
     } else {
       response.json(mealsResult);
     }

@@ -15,8 +15,9 @@ function AllReservations() {
     const Data = await response.json();
     setFetchData(Data);
   };
+
+  //it seems like not working????
   const onDeleteBookInfo = (e) => {
-    console.log(e);
     fetch(`http://localhost:3000/api/meals/${e}`, {
       method: "DELETE",
     });
@@ -32,6 +33,7 @@ function AllReservations() {
             <h4>created_date: {items.created_date} .</h4>
             <h4>phonenumber: {items.contact_phonenumber}.</h4>
             <h4>email: {items.contact_email}.</h4>
+            {/* not working ???? */}
             <button onClick={onDeleteBookInfo(items.id)}>
               Delete reservation
             </button>
@@ -42,15 +44,15 @@ function AllReservations() {
   });
 
   return (
-    <div className="reservations">
-      <Link exact to={"/reservations"}>
+    <div className="reservations allReservations">
+      <Link  to="/reservations">
         <button>All reservations history</button>
       </Link>
       <img src="https://messen-aars.dk/images/ImageRotation/ee2b1164-bc62-4220-a681-72ee012975f8.jpg"></img>
       <h1>
         Welcome <br />
         to <br />
-        histery
+        history
         <br /> Reservations
       </h1>
       {titles}

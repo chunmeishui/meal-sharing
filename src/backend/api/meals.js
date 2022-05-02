@@ -173,7 +173,6 @@ router.get("/", async (request, response) => {
 
   try {
     const mealsResult = await meals;
-
     // return type should always be the same type
     if (mealsResult.length === 0) {
       response.json([]);

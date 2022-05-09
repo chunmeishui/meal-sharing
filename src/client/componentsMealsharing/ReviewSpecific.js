@@ -12,18 +12,16 @@ export const ReviewSpecific = ({ match }) => {
   const fetchDataResult = async () => {
     const response = await fetch(`http://localhost:3000/api/reviews/${id}`);
     console.log(id);
-    const Data = await response.json();
-    setFetchItem(Data);
+    const data = await response.json();
+    setFetchItem(data);
   };
   const items = fetchItem.map((items, index) => (
-    // <div>
       <div key={index} className="reviewSpecificInner">
         <h2>{items.title}</h2>
         <h3>meal id : {items.meal_id}.</h3>
         <h3>Description : {items.description}.</h3>
         <h3>Rating : {items.stars}.</h3>
       </div>
-    // </div>
   ));
   return (
     <div className="reviewSpecific">

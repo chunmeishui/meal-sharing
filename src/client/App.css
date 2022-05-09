@@ -1,21 +1,3 @@
 * {
   box-sizing: border-box;
 }
-/* nav {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  line-height: 10vh;
-  background-color: rgb(73, 79, 82);
-  color: white;
-}
-.nav-links {
-  width: 40%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  list-style: none;
-}
-App {
-  width: 1500px;
-} */

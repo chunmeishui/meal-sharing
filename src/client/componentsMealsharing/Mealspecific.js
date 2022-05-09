@@ -6,23 +6,22 @@ let id = 0;
 let max_reservations = 0;
 function Mealspecific({ match }) {
   const [fetchItem, setFetchItem] = useState([]);
-  const [id, setId] = useState(match.params.id);
-
+  const id = match.params.id;
   useEffect(() => {
     fetchDataResult();
   }, []);
 
   const fetchDataResult = async () => {
     const response = await fetch(`http://localhost:3000/api/meals/${id}`);
-    const Data = await response.json();
-    setFetchItem(Data);
+    const data = await response.json();
+    setFetchItem(data);
   };
   max_reservations = fetchItem.map((max) => max.max_reservations)[0];
 
   const titles = fetchItem.map((items, index) => (
     <div className=" mealSpecificTitle" key={index}>
       <div>
-        <h1>{items.title}</h1>
+        <h2 className="specificMealTitle">{items.title}</h2>
       </div>
       <div className=" mealInfo">
         <h3>meal id : {items.id}.</h3>

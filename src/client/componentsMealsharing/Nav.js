@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Meal.css";
+import { FaUtensils } from "react-icons/fa";
+
 
 function Nav() {
   return (
     <nav className="nav">
-      <h2>Logo</h2>
+      <div className="logo">
+        <FaUtensils />
+      </div>
       <ul className="nav-links">
         <Link to="/">
           <li>Home</li>

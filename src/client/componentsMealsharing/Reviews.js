@@ -18,8 +18,8 @@ export function Reviews() {
 
   const fetchDataResult = async () => {
     const response = await fetch("http://localhost:3000/api/reviews");
-    const Data = await response.json();
-    setFetchData(Data);
+    const data = await response.json();
+    setFetchData(data);
   };
 
   const titles = fetchData.map((items, index) => {
@@ -39,6 +39,8 @@ export function Reviews() {
       </div>
     );
   });
+
+  // not working now?????
   // const addIdNew = fetchData.length + 1;
   const addReview = async (e) => {
     e.preventDefault();

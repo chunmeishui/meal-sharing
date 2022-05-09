@@ -17,8 +17,8 @@ function Reservations() {
     const response = await fetch(
       "http://localhost:3000/api/meals?availableReservations"
     );
-    const Data = await response.json();
-    setFetchData(Data);
+    const data = await response.json();
+    setFetchData(data);
   };
   // const addBookInfo = () => (
   //   <>
@@ -89,14 +89,13 @@ function Reservations() {
 
   return (
     <div className="reservations">
-      <Link  to="/reservations">
+      <Link to="/reservations">
         <button>view reservations history</button>
       </Link>
       <img src="https://messen-aars.dk/images/ImageRotation/ee2b1164-bc62-4220-a681-72ee012975f8.jpg"></img>
       <h1>
         Welcome <br />
-        to <br />
-        left
+        to
         <br /> Reservations
       </h1>
       {titles}

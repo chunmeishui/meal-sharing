@@ -12,13 +12,13 @@ function AllReservations() {
 
   const fetchDataResult = async () => {
     const response = await fetch("http://localhost:3000/api/reservations");
-    const Data = await response.json();
-    setFetchData(Data);
+    const data = await response.json();
+    setFetchData(data);
   };
 
   //it seems like not working????
-  const onDeleteBookInfo = (e) => {
-    fetch(`http://localhost:3000/api/meals/${e}`, {
+  const onDeleteBookInfo = (meal_id) => {
+    fetch(`http://localhost:3000/api/meals/${meal_id}`, {
       method: "DELETE",
     });
   };

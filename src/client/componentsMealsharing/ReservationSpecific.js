@@ -16,8 +16,8 @@ function ReservationSpecific({ id, max_reservations }) {
 
   const fetchReservationResult = async () => {
     const response = await fetch(`http://localhost:3000/api/reservations`);
-    const Data = await response.json();
-    setFetchReservations(Data);
+    const data = await response.json();
+    setFetchReservations(data);
   };
   // get the number of guests
   const titles = fetchReservations
@@ -28,19 +28,17 @@ function ReservationSpecific({ id, max_reservations }) {
 
   const addReservation = async (e) => {
     e.preventDefault();
+    const current = new Date();
     const newObj = {
       number_of_guests: seat,
       contact_phonenumber: phone,
       contact_name: name,
       contact_email: mail,
-      created_date: "2022-04-29",
+      created_date: current,
       meal_id: id,
     };
     try {
-      if (
-      !isNaN( newObj.contact_name)
-       
-      ) {
+      if (!isNaN(newObj.contact_name)) {
         console.log("fill the form");
       } else {
         const fetchPost = await fetch(
@@ -51,7 +49,6 @@ function ReservationSpecific({ id, max_reservations }) {
               "Content-Type": "application/json",
             },
             body: JSON.stringify(newObj),
-            
           }
         );
         await fetchPost.json();
@@ -71,7 +68,6 @@ function ReservationSpecific({ id, max_reservations }) {
   // how to judge the empty input part????
 
   function bookSeats() {
-   
     setReservation((previous) => [
       ...previous,
       {
@@ -96,7 +92,7 @@ function ReservationSpecific({ id, max_reservations }) {
     fetch(apiDelete, {
       method: "DELETE",
     });
-    setFeedback("delete succeed")
+    setFeedback("delete succeed");
   };
   return (
     <div className="ReservationsSpecific">
@@ -161,7 +157,7 @@ function ReservationSpecific({ id, max_reservations }) {
         ) : (
           <h1>No seats left now</h1>
         )}
-        <Link  to={`/meals`}>
+        <Link to={`/meals`}>
           <button>back to meal</button>
         </Link>
         <button onClick={onDeleteMeal} className="deleteMealbtn">

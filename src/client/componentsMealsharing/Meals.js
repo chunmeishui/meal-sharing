@@ -13,8 +13,8 @@ function Meals() {
 
   const fetchDataResult = async () => {
     const response = await fetch("http://localhost:3000/api/meals");
-    const Data = await response.json();
-    setFetchData(Data);
+    const data = await response.json();
+    setFetchData(data);
   };
    let titles = null;
 if (fetchData.length === 0) {

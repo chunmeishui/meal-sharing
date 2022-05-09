@@ -17,30 +17,29 @@ export const AddMeal = () => {
 
   const fetchDataResult = async () => {
     const response = await fetch("http://localhost:3000/api/meals");
-    const Data = await response.json();
-    setMeals(Data);
+    const data = await response.json();
+    setMeals(data);
   };
 
-  const onhandleReservation = async (e) => {
+  const onHandleReservation = async (e) => {
     const addId = meals.length + 1;
+    const current = new Date();
     e.preventDefault();
     const newObj = {
       id: addId,
       title: title,
       description: description,
       location: "lyngby",
-      when: "2022-02-23",
+      when: current,
       max_reservations: maxreservation,
       price: price,
       created_date: created,
     };
     try {
-      if (
-        !isNaN(title) ||
-        !isNaN(description)
-      ) { alert ("pls check the input format ")
-       } else {
-         setSucceed("");
+      if (!isNaN(title) || !isNaN(description)) {
+        alert("pls check the input format ");
+      } else {
+        setSucceed("");
         const fetchPost = await fetch("http://localhost:3000/api/meals", {
           method: "POST",
           headers: {
@@ -50,7 +49,7 @@ export const AddMeal = () => {
         });
         await fetchPost.json();
 
-        //this is to judge wether succeed or not????
+        //this is to judge wether succeed or not???? not working
 
         if (fetchPost.status === 200) {
           setSucceed(" added meal succeed");
@@ -60,7 +59,6 @@ export const AddMeal = () => {
           setPrice("");
           setCreated("");
           setMeals("");
-          
         } else {
           setSucceed("error");
         }
@@ -73,7 +71,7 @@ export const AddMeal = () => {
   return (
     <div className=" formMeal">
       <h1>Add meals</h1>
-      <form onSubmit={onhandleReservation}>
+      <form onSubmit={onHandleReservation}>
         <div>
           <label>
             Meal Title:
@@ -132,7 +130,7 @@ export const AddMeal = () => {
           ></textarea>
         </div>
         <button type="submit">Add meal</button>
-        <Link  to="/meals">
+        <Link to="/meals">
           <button>BACK TO MEAL</button>
         </Link>
       </form>

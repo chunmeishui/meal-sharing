@@ -47,6 +47,14 @@ input {
   color: white;
   line-height: 2rem;
 }
+.logo{
+  height: 6rem;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  font-size: 50px;
+  
+}
 .nav li {
   text-decoration-line: underline;
   text-underline-offset: 3px;
@@ -124,7 +132,7 @@ input {
   flex-wrap: wrap;
   justify-content: space-evenly;
   background-color: rgb(245, 163, 212);
- 
+  cursor:grabbing;
 }
 .mealTitle {
   display: flex;
@@ -132,10 +140,7 @@ input {
   text-align: center;
  /* padding: 2rem; */
   padding: 15px;
-  width: 28%;
-
-}
-.addMeal {
+  width: 28%; 
   display: block;
   text-align: center;
   align-items: center;
@@ -263,6 +268,11 @@ mealSpecificTitle {
   background-color: rgb(241, 98, 210);
 }
 
+.specificMealTitle{
+  text-align: center;
+  align-items: center;
+  padding-top: 2rem;
+}
 .mealInfo {
   align-items: center;
   text-align: center;
@@ -388,6 +398,13 @@ mealSpecificTitle {
   width: 100%;
 }
 
+.notFound{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 10rem;
+}
 /* small screen make it responsive */
 
 @media screen and (max-width: 700px) {
@@ -415,6 +432,13 @@ mealSpecificTitle {
   }
   .reservations img {
     height: auto;
+  }
+  
+  .reservations h1{
+     line-height:1.5rem;
+     letter-spacing: 2px;
+    font-size: 14px;
+    margin-top: 2rem;
   }
   .mealInfo {
     padding: 15px;

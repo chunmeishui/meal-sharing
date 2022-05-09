@@ -15,6 +15,7 @@ import { Reviews } from "./componentsMealsharing/Reviews";
 import { DeleteMeal } from "./componentsMealsharing/DeleteMeal";
 import { ReviewSpecific } from "./componentsMealsharing/ReviewSpecific";
 import AllReservations from "./componentsMealsharing/AllReservations";
+import { NotFound } from "./componentsMealsharing/NotFound";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/contact" exact component={Contact} />
           <Route path="/delete/:id"  component={DeleteMeal} />
           <Route path="/reservations" exact component={AllReservations} />
+          <Route path="*"  component={NotFound} />
         </Switch>
 
         <Footer />

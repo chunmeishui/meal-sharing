@@ -45,19 +45,10 @@ router.post("/", async (request, response) => {
 
 router.put("/:id", async (request, response) => {
   try {
-    // const reservations = await knex("reservation").select("*");
     const inputId = Number(request.params.id);
-    // const newArrayReservation = reservations.map(
-    //   (reservation) => reservation.id
-    // );
-    // const maxIdOfReservation = Math.max(...newArrayReservation);
-
     if (isNaN(inputId)) {
       response.send("Id is not a number");
     }
-    // else if (inputId > maxIdOfReservation) {
-    //   response.send(`the largest id is : ${maxIdOfReservation}`);
-    // }
     else {
       const current = new Date();
       const specificReservation = await knex("reservation")
@@ -80,18 +71,12 @@ router.put("/:id", async (request, response) => {
 
 router.delete("/:id", async (request, response) => {
   try {
-    // const reservations = await knex("reservation").select("*");
-    // const newArrayReservation = reservations.map(
-    //   (reservation) => reservation.id
-    // );
-    // const maxIdOfReservation = Math.max(...newArrayReservation);
+ 
     const inputId = Number(request.params.id);
     if (isNaN(inputId)) {
       response.send("Id is not a number");
     }
-    //  else if (inputId > maxIdOfReservation) {
-    //   response.send(`the largest id is : ${maxIdOfReservation}`);
-    // }
+
     else {
       const specificReservation = await knex("reservation")
         .select("*")

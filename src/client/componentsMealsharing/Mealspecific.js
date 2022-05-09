@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Meal.css";
 import ReservationSpecific from "./ReservationSpecific";
 
-let id = 0;
+// let id = 0;
 let max_reservations = 0;
 function Mealspecific({ match }) {
   const [fetchItem, setFetchItem] = useState([]);

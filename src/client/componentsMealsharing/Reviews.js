@@ -11,6 +11,7 @@ export function Reviews() {
   const [mealId, setMealId] = useState("");
   const [created, setCreated] = useState("");
   const [succeed, setSucceed] = useState("");
+  const [inputReview, setInputReview] = useState("");
 
   useEffect(() => {
     fetchDataResult();
@@ -22,6 +23,18 @@ export function Reviews() {
     setFetchData(data);
   };
 
+
+    useEffect(() => {
+      fetchSearchReviews();
+    }, [inputReview]);
+
+    const fetchSearchReviews = async () => {
+      const response = await fetch(
+        `http://localhost:3000/api/reviews?title=${inputReview}`
+      );
+      const data = await response.json();
+      setFetchData(data);
+    };
   const titles = fetchData.map((items, index) => {
     return (
       <div className="mealTitle" key={index}>
@@ -42,7 +55,7 @@ export function Reviews() {
 
   const addReview = async (e) => {
     e.preventDefault();
- 
+
     const addedReview = {
       title: title,
       description: description,
@@ -146,6 +159,11 @@ export function Reviews() {
         <h3>{succeed}</h3>
       </form>
       <h1> All reviews</h1>
+      <input
+        placeholder="search review by title"
+        value={inputReview}
+        onChange={(e) => setInputReview(e.target.value)}
+      ></input>
       <div className="allMeals">{titles}</div>
     </div>
   );

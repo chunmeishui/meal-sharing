@@ -45,9 +45,6 @@ if (fetchData.length === 0) {
  });
 
 }
-
-
-  // how to judge the input value is right or not. how about it will fetch nothing???
   useEffect(() => {
     mealSearch();
   }, [input]);

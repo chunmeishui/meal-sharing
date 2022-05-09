@@ -40,14 +40,10 @@ export function Reviews() {
     );
   });
 
-  // not working now?????
-  // const addIdNew = fetchData.length + 1;
   const addReview = async (e) => {
     e.preventDefault();
-    // const reviewData = fetchData.map((item) => item);
-    // addid = reviewData[reviewData.length - 1].id;
+ 
     const addedReview = {
-      // id: addIdNew,
       title: title,
       description: description,
       stars: stars,

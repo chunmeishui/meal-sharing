@@ -38,7 +38,6 @@ function AllReservations() {
             <button onClick={onDeleteBookInfo(items.id)}>
               Delete reservation
             </button>
-            n 
           </div>
         </div>
       </div>

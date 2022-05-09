@@ -20,56 +20,7 @@ function Reservations() {
     const data = await response.json();
     setFetchData(data);
   };
-  // const addBookInfo = () => (
-  //   <>
-  //     <form>
-  //       <div>
-  //         <label>
-  //           seat:
-  //           <input
-  //             type="number"
-  //             value={seat}
-  //             required
-  //             onChange={(e) => setSeat(e.target.value)}
-  //           ></input>
-  //         </label>
-  //       </div>
-  //       <div>
-  //         <label>
-  //           phone:
-  //           <input
-  //             type="number"
-  //             value={phone}
-  //             required
-  //             onChange={(e) => setPhone(e.target.value)}
-  //           ></input>
-  //         </label>
-  //       </div>
-  //       <div>
-  //         <label>
-  //           name:
-  //           <input
-  //             type="text"
-  //             value={name}
-  //             required
-  //             onChange={(e) => setName(e.target.value)}
-  //           ></input>
-  //         </label>
-  //       </div>
-  //       <div>
-  //         <label>
-  //           mail:
-  //           <input
-  //             type="email"
-  //             value={mail}
-  //             required
-  //             onChange={(e) => setMail(e.target.value)}
-  //           ></input>
-  //         </label>
-  //       </div>
-  //     </form>
-  //   </>
-  // );
+
   const titles = fetchData.map((items, index) => {
     return (
       <div className="reservations" key={index}>
@@ -81,7 +32,6 @@ function Reservations() {
 
             <button>Add reservation</button>
           </Link>
-          {/* {addBookInfo()} */}
         </div>
       </div>
     );

@@ -36,15 +36,16 @@ router.get("/:id", async (request, response) => {
 
 //method 1 of post
 router.post("/", async (request, response) => {
+  const date = new Date();
   try {
     const postedMeal = await knex("meal").select("*").insert({
       title: request.body.title,
       description: request.body.description,
       location: request.body.location,
-      when: request.body.when,
+      when: date,
       max_reservations: request.body.max_reservations,
       price: request.body.price,
-      created_date: request.body.created_date,
+      created_date: date,
     });
     response.json(postedMeal);
   } catch (error) {
@@ -98,16 +99,17 @@ router.put("/:id", async (request, response) => {
 router.delete("/:id", async (request, response) => {
   try {
     const meals = await knex("meal").select("*");
-     const inputId = Number(request.params.id);
+    const inputId = Number(request.params.id);
     const maxIdOfMeal = meals.map((meal) => meal.id);
     const largeNo = Math.max(...maxIdOfMeal);
-     if (isNaN(inputId)) {
-   response.send("Id is not number");
-   } 
-   else if (inputId > largeNo) {
+    if (isNaN(inputId)) {
+      response.send("Id is not number");
+    } else if (inputId > largeNo) {
       response.send(`the largest id is : ${largeNo}`);
     } else {
-      const deletedMeal = await knex("meal").where({ id: request.params.id }).delete();
+      const deletedMeal = await knex("meal")
+        .where({ id: request.params.id })
+        .delete();
       response.json(deletedMeal);
     }
   } catch (error) {
@@ -127,7 +129,7 @@ router.get("/", async (request, response) => {
       meals = meals.where("meal.price", "<=", maxPrice);
     }
   }
-// how about there is only meals in mealtable and don't have reservation now but still avalibale for book the seats.
+  // how about there is only meals in mealtable and don't have reservation now but still avalibale for book the seats.
   if ("availableReservations" in request.query) {
     meals = meals
       .join("reservation", "meal.id", "=", "reservation.meal_id")

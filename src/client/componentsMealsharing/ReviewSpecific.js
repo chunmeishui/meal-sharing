@@ -4,14 +4,16 @@ import "./Meal.css";
 
 export const ReviewSpecific = ({ match }) => {
   const id = match.params.id;
+   console.log(id);
   const [fetchItem, setFetchItem] = useState([]);
   useEffect(() => {
     fetchDataResult();
   }, []);
 
   const fetchDataResult = async () => {
+     console.log(id);
     const response = await fetch(`http://localhost:3000/api/reviews/${id}`);
-    console.log(id);
+   
     const data = await response.json();
     setFetchItem(data);
   };

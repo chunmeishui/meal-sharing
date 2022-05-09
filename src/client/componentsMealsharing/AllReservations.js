@@ -33,10 +33,12 @@ function AllReservations() {
             <h4>created_date: {items.created_date} .</h4>
             <h4>phonenumber: {items.contact_phonenumber}.</h4>
             <h4>email: {items.contact_email}.</h4>
+
             {/* not working ???? */}
             <button onClick={onDeleteBookInfo(items.id)}>
               Delete reservation
             </button>
+            n 
           </div>
         </div>
       </div>

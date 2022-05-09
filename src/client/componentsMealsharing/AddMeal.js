@@ -8,25 +8,25 @@ export const AddMeal = () => {
   const [maxreservation, setMaxreservation] = useState("");
   const [price, setPrice] = useState("");
   const [created, setCreated] = useState([]);
-  const [meals, setMeals] = useState([]);
+  // const [meals, setMeals] = useState([]);
   const [succeed, setSucceed] = useState("");
 
-  useEffect(() => {
-    fetchDataResult();
-  }, []);
+  // useEffect(() => {
+  //   fetchDataResult();
+  // }, []);
 
-  const fetchDataResult = async () => {
-    const response = await fetch("http://localhost:3000/api/meals");
-    const data = await response.json();
-    setMeals(data);
-  };
+  // const fetchDataResult = async () => {
+  //   const response = await fetch("http://localhost:3000/api/meals");
+  //   const data = await response.json();
+  //   setMeals(data);
+  // };
 
   const onHandleReservation = async (e) => {
-    const addId = meals.length + 1;
+    // const addId = meals.length + 1;
     const current = new Date();
     e.preventDefault();
     const newObj = {
-      id: addId,
+      // id: addId,
       title: title,
       description: description,
       location: "lyngby",

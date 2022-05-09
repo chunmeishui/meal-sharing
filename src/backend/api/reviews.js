@@ -32,26 +32,21 @@ router.post("/", async (request, response) => {
 });
 
 router.get("/:id", async (request, response) => {
-  try {
-    const reviews = await knex("review").select("*");
-    const inputId = Number(request.params.id);
-    const newArray = reviews.map((review) => review.id);
-    //get the largest number of id
-    const maxIdOfReview = Math.max(...newArray);
-    if (isNaN(inputId)) {
-      response.send("not a number");
-    } else if (inputId > maxIdOfReview) {
-      response.send(`The max id is :${maxIdOfReview}`);
-    } else {
-      const speceficReview = await knex("review")
-        .select("*")
-        .where("meal_id", "=", inputId);
-      response.json(speceficReview);
-    }
-  } catch (error) {
-    throw error;
-  }
+ try {
+   const inputNumber = Number(request.params.id);
+   if (isNaN(inputNumber)) {
+     response.send("not a number");
+   } else {
+     const specificMeal = await knex("review")
+       .select("*")
+       .where("id", request.params.id);
+     response.json(specificMeal);
+   }
+ } catch (error) {
+   throw error;
+ }
 });
+
 router.put("/:id", async (request, response) => {
   try {
     const reviews = await knex("review").select("*");

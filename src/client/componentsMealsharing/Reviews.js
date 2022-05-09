@@ -27,7 +27,7 @@ export function Reviews() {
       <div className="mealTitle" key={index}>
         <FancyBorder>
           <div>
-            <Link to={"/meals"}>
+            <Link to={`/reviews/${items.id}`}>
               <h2> {items.title}</h2>
               <h4>meal_id : {items.meal_id}.</h4>
               <h4>Rating : {items.stars} - stars.</h4>
@@ -85,7 +85,6 @@ export function Reviews() {
 
   return (
     <div className="meals">
-      {/* <h1 className="content"> ADD REVIEWS</h1> */}
       <form onSubmit={addReview} className="addreview">
         <div>
           <label>

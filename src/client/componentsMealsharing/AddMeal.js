@@ -40,7 +40,7 @@ export const AddMeal = () => {
         alert("pls check the input format ");
       } else {
         setSucceed("");
-        const fetchPost = await fetch("http://localhost:3000/api/meals", {
+        const fetchPost = await fetch("/api/meals", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

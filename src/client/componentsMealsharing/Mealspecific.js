@@ -12,7 +12,7 @@ function Mealspecific({ match }) {
   }, []);
 
   const fetchDataResult = async () => {
-    const response = await fetch(`http://localhost:3000/api/meals/${id}`);
+    const response = await fetch(`/api/meals/${id}`);
     const data = await response.json();
     setFetchItem(data);
   };

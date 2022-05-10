@@ -11,7 +11,7 @@ function AllReservations() {
   }, []);
 
   const fetchDataResult = async () => {
-    const response = await fetch("http://localhost:3000/api/reservations");
+    const response = await fetch("/api/reservations");
     const data = await response.json();
     setFetchData(data);
   };

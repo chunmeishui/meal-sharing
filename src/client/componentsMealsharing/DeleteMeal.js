@@ -8,7 +8,7 @@ export const DeleteMeal = () => {
   
   const onDeleteMeal =  () => {
     const inputId = Number(id);
-   fetch(`http://localhost:3000/api/meals/${inputId}`, {
+   fetch(`/api/meals/${inputId}`, {
       method: "DELETE",
     });
     setSuccess("delete success")

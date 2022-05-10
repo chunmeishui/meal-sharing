@@ -11,7 +11,7 @@ export const ReviewSpecific = ({ match }) => {
 
   const fetchDataResult = async () => {
     console.log(id);
-    const response = await fetch(`http://localhost:3000/api/reviews/${id}`);
+    const response = await fetch(`/api/reviews/${id}`);
 
     const data = await response.json();
     setFetchItem(data);

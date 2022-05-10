@@ -15,7 +15,7 @@ function ReservationSpecific({ id, max_reservations }) {
   }, []);
 
   const fetchReservationResult = async () => {
-    const response = await fetch(`http://localhost:3000/api/reservations`);
+    const response = await fetch("/api/reservations");
     const data = await response.json();
     setFetchReservations(data);
   };

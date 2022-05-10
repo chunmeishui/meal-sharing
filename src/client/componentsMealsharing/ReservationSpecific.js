@@ -65,8 +65,6 @@ function ReservationSpecific({ id, max_reservations }) {
 
   // display of reservation
 
-  // how to judge the empty input part????
-
   function bookSeats() {
     setReservation((previous) => [
       ...previous,

@@ -24,7 +24,9 @@ router.get("/:id", async (request, response) => {
     if (isNaN(inputNumber)) {
       response.send("not a number");
     } else {
-      const specificMeal = await knex("meal").where("id", request.params.id);
+      const specificMeal = await knex("meal")
+        .select("*")
+        .where("id", request.params.id);
       response.json(specificMeal);
     }
   } catch (error) {
@@ -34,15 +36,16 @@ router.get("/:id", async (request, response) => {
 
 //method 1 of post
 router.post("/", async (request, response) => {
+  const date = new Date();
   try {
-    const postedMeal = await knex("meal").insert({
+    const postedMeal = await knex("meal").select("*").insert({
       title: request.body.title,
       description: request.body.description,
       location: request.body.location,
-      when: request.body.when,
+      when: date,
       max_reservations: request.body.max_reservations,
       price: request.body.price,
-      created_date: request.body.created_date,
+      created_date: date,
     });
     response.json(postedMeal);
   } catch (error) {
@@ -99,13 +102,14 @@ router.delete("/:id", async (request, response) => {
     const inputId = Number(request.params.id);
     const maxIdOfMeal = meals.map((meal) => meal.id);
     const largeNo = Math.max(...maxIdOfMeal);
-
     if (isNaN(inputId)) {
       response.send("Id is not number");
     } else if (inputId > largeNo) {
       response.send(`the largest id is : ${largeNo}`);
     } else {
-      const deletedMeal = meals.where({ id: request.params.id }).delete();
+      const deletedMeal = await knex("meal")
+        .where({ id: request.params.id })
+        .delete();
       response.json(deletedMeal);
     }
   } catch (error) {
@@ -125,7 +129,7 @@ router.get("/", async (request, response) => {
       meals = meals.where("meal.price", "<=", maxPrice);
     }
   }
-
+  // how about there is only meals in mealtable and don't have reservation now but still avalibale for book the seats.
   if ("availableReservations" in request.query) {
     meals = meals
       .join("reservation", "meal.id", "=", "reservation.meal_id")
@@ -135,7 +139,7 @@ router.get("/", async (request, response) => {
         "max_reservations",
         knex.raw("SUM(number_of_guests) AS total_guests"),
         knex.raw(
-          '(max_reservations-SUM(number_of_guests)) AS "Available Reservation"'
+          '(max_reservations-SUM(number_of_guests)) AS "AvailableReservation"'
         )
       )
       .where("max_reservations", ">", "number_of_guests")
@@ -171,8 +175,9 @@ router.get("/", async (request, response) => {
 
   try {
     const mealsResult = await meals;
+    // return type should always be the same type
     if (mealsResult.length === 0) {
-      response.json("No meals found");
+      response.json([]);
     } else {
       response.json(mealsResult);
     }

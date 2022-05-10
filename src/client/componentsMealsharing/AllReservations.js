@@ -17,11 +17,11 @@ function AllReservations() {
   };
 
   //it seems like not working????
-  // const onDeleteBookInfo = (meal_id) => {
-  //   fetch(`http://localhost:3000/api/meals/${meal_id}`, {
-  //     method: "DELETE",
-  //   });
-  // };
+  const onDeleteBookInfo = (meal_id) => {
+    fetch(`http://localhost:3000/api/meals/${meal_id}`, {
+      method: "DELETE",
+    });
+  };
 
   const titles = fetchData.map((items, index) => {
     return (
@@ -35,9 +35,9 @@ function AllReservations() {
             <h4>email: {items.contact_email}.</h4>
 
             {/* not working ???? */}
-            {/* <button onClick={onDeleteBookInfo(items.id)}>
+            <button onClick={onDeleteBookInfo(items.id)}>
               Delete reservation
-            </button> */}
+            </button>
           </div>
         </div>
       </div>

@@ -42,7 +42,7 @@ function ReservationSpecific({ id, max_reservations }) {
         console.log("fill the form");
       } else {
         const fetchPost = await fetch(
-          "http://localhost:3000/api/reservations",
+          "/api/reservations",
           {
             method: "POST",
             headers: {
@@ -87,7 +87,7 @@ function ReservationSpecific({ id, max_reservations }) {
       <h3>email: {items.contact_email}</h3>
     </div>
   ));
-  const apiDelete = `http://localhost:3000/api/meals/${id}`;
+  const apiDelete = `/api/meals/${id}`;
   const onDeleteMeal = () => {
     fetch(apiDelete, {
       method: "DELETE",

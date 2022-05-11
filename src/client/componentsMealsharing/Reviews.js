@@ -30,7 +30,7 @@ export function Reviews() {
 
     const fetchSearchReviews = async () => {
       const response = await fetch(
-        `http://localhost:3000/api/reviews?title=${inputReview}`
+        `/api/reviews?title=${inputReview}`
       );
       const data = await response.json();
       setFetchData(data);
@@ -68,7 +68,7 @@ export function Reviews() {
       if (!isNaN(addedReview.title) || !isNaN(addedReview.description)) {
         alert("Check the form");
       } else {
-        const fetchPost = await fetch("http://localhost:3000/api/reviews", {
+        const fetchPost = await fetch("/api/reviews", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

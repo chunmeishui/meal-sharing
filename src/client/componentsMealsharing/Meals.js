@@ -10,9 +10,9 @@ function Meals() {
   useEffect(() => {
     fetchDataResult();
   }, []);
-
   const fetchDataResult = async () => {
     const response = await fetch("/api/meals");
+    console.log(response);
     const data = await response.json();
     setFetchData(data);
   };
@@ -53,7 +53,7 @@ if (fetchData.length === 0) {
     try {
       if (isNaN(input) && input !== "") {
         const fatchMeal = await fetch(
-          `http://localhost:3000/api/meals?title=${input}`
+          `/api/meals?title=${input}`
         );
         const data = await fatchMeal.json();
         setFetchData(data);
